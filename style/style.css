@@ -11,12 +11,11 @@ body {
   height: 40px;
   width: 0px;
   position: absolute;
-  top: 0px;
   border: 1px solid red;
-  left: 330px;
-  top: 24px;
+  right: 100px;
+  top: 100px;
   transition: opacity 0.7s;
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
   cursor: pointer;
 }
