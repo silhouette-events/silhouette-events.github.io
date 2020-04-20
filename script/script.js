@@ -3,7 +3,7 @@ const options = {
 	height: 360,
 	channel: "lostlands",
 	autoplay: false,
-	controls: false,
+	controls: true,
 };
 
 const player = new Twitch.Player("player", options);
