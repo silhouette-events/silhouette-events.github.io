@@ -34,10 +34,10 @@ player.addEventListener(Twitch.Player.PLAYING, function() {
 	console.log(player.getQualities());
 });
 
-var e = document.querySelector('.volume-slider-con');
+var mouseE = document.querySelector('.volume-slider-con');
 var eInner = document.querySelector('.volume-slider');
 var drag = false;
-e.addEventListener('mousedown',function(ev){
+mouseE.addEventListener('mousedown',function(ev){
    drag = true;
    updateBar(ev.clientY);
 });
@@ -50,7 +50,7 @@ document.addEventListener('mouseup',function(ev){
  drag = false;
 });
 var updateBar = function (x, vol) {
-   var volume = e;
+   var volume = mouseE;
         var percentage;
         //if only volume have specificed
         //then direct update volume
@@ -73,5 +73,6 @@ var updateBar = function (x, vol) {
 		document.getElementById('volume-knob').style.top = (percentage - 5) / 2.5 +'px';
 		//eInner.style.top = 100 - percentage + 'px';
 	var newVolume = 1 - percentage / 100
+	alert(newVolume);
         player.setVolume(newVolume);
 };
