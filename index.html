@@ -17,13 +17,14 @@
 				height: 360,
 				channel: "lostlands",
 				autoplay: false,
-				controls: false,
+				controls: true,
 			};
 			const player = new Twitch.Player("player", options);
 
 			player.addEventListener(Twitch.Player.READY, function() {
 				player.setQuality('160p30');
-				player.setMuted(true);
+				player.setMuted(false);
+				player.setVolume(0.5);
 			});
 
 			player.addEventListener(Twitch.Player.PLAY, function() {
