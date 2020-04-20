@@ -1,7 +1,7 @@
 const options = {
 	width: 640,
 	height: 360,
-	channel: "lostlands",
+	channel: "monstercat",
 	autoplay: false,
 	controls: true,
 };
