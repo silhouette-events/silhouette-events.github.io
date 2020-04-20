@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<link href="./style/style.css" rel="stylesheet" type="text/css" />
-	<title>Silhouette Events</title>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-  <body>
-    <!-- Add a placeholder for the Twitch embed -->
-    <div id="twitch-embed"></div>
+	<head>
+		<script type="text/javascript" src="https://player.twitch.tv/js/embed/v1.js"></script>
+	</head>
+	<body>
+		<div id="player"></div>
+		<button onclick="player.setMuted(true)">mute</button>
+		<button onclick="player.setMuted(false)">unmute</button>
+		<button onclick="player.play()">play</button>
+		<button onclick="player.pause()">pause</button>
+		<a id="status">nan</a>
+		<a id="status2">nan</a>
+		<script type="text/javascript">
+			const options = {
+				width: 640,
+				height: 360,
+				channel: "lostlands",
+				autoplay: false
+			};
+			const player = new Twitch.Player("player", options);
 
-    <!-- Load the Twitch embed script -->
-    <script src="https://player.twitch.tv/embed/v1.js"></script>
+			player.addEventListener(Twitch.Player.READY, function() {
+				player.setQuality('160p30');
+				player.setMuted(true);
+			});
 
-    <!--
-      Create a Twitch.Embed object that will render
-      within the "twitch-embed" root element.
-    -->
-    <script type="text/javascript">
-      const embed = new Twitch.Embed("twitch-embed", {
-        width: 854,
-        height: 480,
-        channel: "beatsturningstaff",
-        layout: "video",
-        autoplay: false,
-        // only needed if your site is also embedded on embed.example.com and othersite.example.com 
-        parent: ["embed.example.com", "othersite.example.com"]
-      });
+			player.addEventListener(Twitch.Player.PLAY, function() {
+				document.getElementById('status').innerHTML = 'playing';
+			});
+			
+			player.addEventListener(Twitch.Player.PAUSE, function() {
+				document.getElementById('status').innerHTML = 'paused';
+			});
 
-      embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
-		const player = embed.getPlayer();
-		player.addEventListener(Twitch.Embed.PLAY, () => {
-	      console.log("HERE");
-		});
-		player.setQuality('160p30');
-		player.setMuted(true);
-	  });
-    </script>
-	<button onClick="alert(player.getMuted());">getMuted</button>
-  </body>
-</body>
+			player.addEventListener(Twitch.Player.ONLINE, function() {
+				document.getElementById('status2').innerHTML = 'online';
+			});
+
+			player.addEventListener(Twitch.Player.OFFLINE, function() {
+				document.getElementById('status2').innerHTML = 'offline';
+			});
+		</script>
+	</body>
 </html>
