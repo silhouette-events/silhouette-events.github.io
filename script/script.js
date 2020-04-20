@@ -74,5 +74,4 @@ var updateBar = function (x, vol) {
 		//eInner.style.top = 100 - percentage + 'px';
 	var newVolume = 1 - percentage / 100
 	alert(newVolume);
-        player.setVolume(newVolume);
 };
