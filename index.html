@@ -8,13 +8,27 @@
 		<script type="text/javascript" src="https://player.twitch.tv/js/embed/v1.js"></script>
 	</head>
 	<body>
-		<div id="player"></div>
+		<div id="player">
+			<div id=stream-button-panel>
+				<div class=stream-button-container>
+					<img id=stream-button-play src="./style/images/play-button.png" onClick="displayPlay()" />
+					<img id=stream-button-pause src="./style/images/pause-button.png" onClick="displayPause()" />
+				</div>
+			</div>
+		</div>
 		<button onclick="player.setMuted(true)">mute</button>
 		<button onclick="player.setMuted(false)">unmute</button>
 		<button onclick="player.play()">play</button>
 		<button onclick="player.pause()">pause</button>
-		<div class="slidecontainer">
+		<div id=volume-slider-container>
 			<input type="range" min=0 max=100 value=100 id=volume-slider>
+			<div id=volume-slider-display-container>
+				<div id=volume-slider-display>
+					<div id=volume-slider-knob-container>
+						<div id=volume-slider-knob></div>
+						</div>
+					</div>
+			</div>
 		</div>
 		<a id="status">nan</a>
 		<a id="status2">nan</a>
