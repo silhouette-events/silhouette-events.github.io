@@ -1,7 +1,7 @@
 var volumeSlider = document.getElementById("volume-slider");
 var volumeSliderDisplay = document.getElementById("volume-slider-display");
 volumeSliderDisplay.style.width = volumeSlider.value * 0.94 + 'px';
-var preMuteVolume = 10;
+var preMuteVolume = 25;
 
 if (volumeSlider.value > 50) {
 	document.getElementById('stream-button-volume-full').style.display = 'inline-block';
@@ -30,7 +30,7 @@ const options = {
 const player = new Twitch.Player("livestream", options);
 
 player.addEventListener(Twitch.Player.READY, function() {
-	player.setQuality('160p30');
+	player.setQuality('auto');
 	player.setMuted(false);
 	player.setVolume(0.5);
 });
@@ -123,4 +123,16 @@ function displayPause() {
 function displayPlay() {
 	document.getElementById('stream-button-pause').style.display = 'inline-block';
 	document.getElementById('stream-button-play').style.display = 'none';
+}
+
+function toggleFullscreen() {
+	if ((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+		document.exitFullscreen();
+		document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
+		document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
+	} else {
+		document.querySelector('#livestream').requestFullscreen();
+		document.getElementById('stream-button-fullscreen-enter').style.display = 'none';
+		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
+	}
 }

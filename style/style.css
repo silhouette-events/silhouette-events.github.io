@@ -20,11 +20,10 @@ body {
   -webkit-appearance: none;
   width: 99px;
   height: 4px;
-  background-color: rgb(100,100,100);
+  background-color: white;
   outline: none;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  cursor: pointer;
   cursor: pointer;
 }
 
@@ -49,7 +48,7 @@ body {
 #volume-slider-display {
 	width: 4px;
 	height: 4px;
-	background-color: red;
+	background-color: yellow;
 	position: relative;
 	left: 2px;
 	bottom: 9px;
@@ -66,7 +65,7 @@ body {
 #volume-slider-knob {
 	width: 5px;
 	height: 12px;
-	background-color: white;
+	background-color: yellow;
 	position: relative;
 	left: 0px;
 	bottom: 19px;
@@ -84,12 +83,27 @@ body {
 	cursor: pointer;
 }
 
+.stream-standard-button-right {
+	height: 20px;
+	padding: 10px;
+	cursor: pointer;
+	margin-right: 0px;
+	margin-left: auto;
+	display: inline-block;
+}
+
+#stream-button-fullscreen-container {
+	float: right;
+	height: 0px;
+}
+
 #stream-button-volume-container {
 	height: 20px;
 	padding: 10px 0px 10px 10px;
 	display: inline-block;
 	width: 35px;
 	vertical-align: top;
+	cursor: pointer;
 	overflow: hidden;
 	transition: width 0.3s;
 }
@@ -104,7 +118,6 @@ body {
 	vertical-align: top;
 	position: relative;
 	left: 2px;
-	cursor: pointer;
 }
 
 #stream-button-panel {
