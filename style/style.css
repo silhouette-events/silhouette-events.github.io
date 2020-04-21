@@ -20,10 +20,11 @@ body {
   -webkit-appearance: none;
   width: 99px;
   height: 4px;
-  background-color: white;
+  background-color: rgb(100,100,100);
   outline: none;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  cursor: pointer;
   cursor: pointer;
 }
 
@@ -48,7 +49,7 @@ body {
 #volume-slider-display {
 	width: 4px;
 	height: 4px;
-	background-color: yellow;
+	background-color: red;
 	position: relative;
 	left: 2px;
 	bottom: 9px;
@@ -65,7 +66,7 @@ body {
 #volume-slider-knob {
 	width: 5px;
 	height: 12px;
-	background-color: yellow;
+	background-color: white;
 	position: relative;
 	left: 0px;
 	bottom: 19px;
@@ -89,7 +90,6 @@ body {
 	display: inline-block;
 	width: 35px;
 	vertical-align: top;
-	cursor: pointer;
 	overflow: hidden;
 	transition: width 0.3s;
 }
@@ -104,6 +104,7 @@ body {
 	vertical-align: top;
 	position: relative;
 	left: 2px;
+	cursor: pointer;
 }
 
 #stream-button-panel {
