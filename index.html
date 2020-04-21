@@ -30,12 +30,16 @@
 								</div>
 							</div>
 						</div>
-						<div id=stream-button-fullscreen-container>
+						<div id=stream-button-right-container>
+							<img class=stream-standard-button-right id=stream-button-chat src="./style/images/chat-button.png" onClick="toggleChat()" />
 							<img class=stream-standard-button-right id=stream-button-fullscreen-enter src="./style/images/fullscreen-button-enter.png" onClick="toggleFullscreen()" />
 							<img class=stream-standard-button-right id=stream-button-fullscreen-exit src="./style/images/fullscreen-button-exit.png" onClick="toggleFullscreen()" style="display:none" />
 						</div>
 					</div>
 				</div>
+			</div>
+			<div id=livestream-chat-container>
+				<iframe id=livestream-chat frameborder="0" scrolling="no" id="monstercat" src="https://www.twitch.tv/embed/monstercat/chat?parent=events.silhouetteradio.xyz" height="100%" width="400px"></iframe>
 			</div>
 		</div>
 		<button onclick="player.setMuted(true)">mute</button>

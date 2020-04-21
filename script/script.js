@@ -2,6 +2,7 @@ var volumeSlider = document.getElementById("volume-slider");
 var volumeSliderDisplay = document.getElementById("volume-slider-display");
 volumeSliderDisplay.style.width = volumeSlider.value * 0.94 + 'px';
 var preMuteVolume = 25;
+var chatStatus = 0;
 
 if (volumeSlider.value > 50) {
 	document.getElementById('stream-button-volume-full').style.display = 'inline-block';
@@ -23,7 +24,7 @@ const options = {
 	width: '100%',
 	height: '100%',
 	channel: "monstercat",
-	autoplay: false,
+	autoplay: true,
 	controls: false,
 };
 
@@ -134,5 +135,23 @@ function toggleFullscreen() {
 		document.querySelector('#livestream').requestFullscreen();
 		document.getElementById('stream-button-fullscreen-enter').style.display = 'none';
 		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
+	}
+}
+
+function toggleChat() {
+	if (chatStatus == 0) {
+		chatStatus = 1;
+		document.getElementById('livestream-chat-container').style.width = '400px';
+		document.getElementById('livestream-chat-container').style.left = 'calc(100% - 400px)';
+		document.getElementById('stream-button-right-container').style.transition = 'padding-right 0.3s';
+		document.getElementById('stream-button-right-container').style.paddingRight = '200px';
+		document.getElementById('livestream').style.width = 'calc(100% - 200px)';
+	} else {
+		chatStatus = 0;
+		document.getElementById('livestream-chat-container').style.width = '0px';
+		document.getElementById('livestream-chat-container').style.left = '100%';
+		document.getElementById('stream-button-right-container').style.transition = 'padding-right 0.5s';
+		document.getElementById('stream-button-right-container').style.paddingRight = '0px';
+		document.getElementById('livestream').style.width = '100%';
 	}
 }
