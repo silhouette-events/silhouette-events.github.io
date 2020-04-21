@@ -8,16 +8,19 @@ body {
 }
 
 #volume-slider-container {
-	position: absolute;
-	top: 200px;
-	left: 100px;
+	bottom: 1px;
+	display: inline-block;
+	position: relative;
+	padding-left: 10px;
+	width: 0px;
+	height: 0px;
 }
 
 #volume-slider {
   -webkit-appearance: none;
-  width: 49px;
-  height: 2px;
-  background-color: red;
+  width: 99px;
+  height: 4px;
+  background-color: white;
   outline: none;
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -27,7 +30,7 @@ body {
 #volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
+  width: 9px;
   height: 20px;
   background-color: black;
   cursor: pointer;
@@ -35,7 +38,7 @@ body {
 }
 
 #volume-slider::-moz-range-thumb {
-  width: 20px;
+  width: 9px;
   height: 20px;
   background-color: black;
   cursor: pointer;
@@ -45,10 +48,10 @@ body {
 #volume-slider-display {
 	width: 4px;
 	height: 4px;
-	background-color: white;
+	background-color: yellow;
 	position: relative;
 	left: 2px;
-	bottom: 8px;
+	bottom: 9px;
 	pointer-events: none;
 	text-align: right;
 	
@@ -60,14 +63,12 @@ body {
 }
 
 #volume-slider-knob {
-	width: 12px;
+	width: 5px;
 	height: 12px;
-	background-color: white;
+	background-color: yellow;
 	position: relative;
-	right: 0px;
-	bottom: 20px;
-	border-radius: 50%;
-	border: 1.5px solid black;
+	left: 0px;
+	bottom: 19px;
 }
 
 #volume-slider-knob-container {
@@ -76,19 +77,53 @@ body {
 	height: 0px;
 }
 
-.stream-button-container img {
-	width: 15px;
-	background-color: blue;
+.stream-standard-button {
+	height: 20px;
 	padding: 10px;
 	cursor: pointer;
 }
 
+#stream-button-volume-container {
+	height: 20px;
+	padding: 10px 0px 10px 10px;
+	display: inline-block;
+	width: 35px;
+	vertical-align: top;
+	cursor: pointer;
+	overflow: hidden;
+	transition: width 0.3s;
+}
+
+#stream-button-volume-container:hover {
+	width: 150px;
+}
+
+.stream-button-volume {
+	margin: 0px;
+	height: 20px;
+	vertical-align: top;
+	position: relative;
+	left: 2px;
+}
+
 #stream-button-panel {
-	position: absolute;
-	top: 100px;
-	height: 50px;
+	position: relative;
+	bottom: 40px; /*bottom: 40px;*/
+	height: 40px;
+	background-image: linear-gradient(0deg, black 0%, rgba(0,0,0,0.7) 65%, transparent 100%);
 }
 
 #stream-button-pause {
 	display: none;
+}
+
+#stream-button-panel-container {
+	height: 0px;
+	position: relative;
+	top: 100%;
+}
+
+#livestream {
+	width: 100%;
+	height: 100vh;
 }
