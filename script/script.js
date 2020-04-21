@@ -132,7 +132,7 @@ function toggleFullscreen() {
 		document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
 		document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
 	} else {
-		document.querySelector('#livestream').requestFullscreen();
+		document.querySelector('#livestream-container').requestFullscreen();
 		document.getElementById('stream-button-fullscreen-enter').style.display = 'none';
 		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
 	}
@@ -143,15 +143,11 @@ function toggleChat() {
 		chatStatus = 1;
 		document.getElementById('livestream-chat-container').style.width = '400px';
 		document.getElementById('livestream-chat-container').style.left = 'calc(100% - 400px)';
-		document.getElementById('stream-button-right-container').style.transition = 'padding-right 0.3s';
-		document.getElementById('stream-button-right-container').style.paddingRight = '200px';
-		document.getElementById('livestream').style.width = 'calc(100% - 200px)';
+		document.getElementById('livestream').style.width = 'calc(100% - 400px)';
 	} else {
 		chatStatus = 0;
 		document.getElementById('livestream-chat-container').style.width = '0px';
 		document.getElementById('livestream-chat-container').style.left = '100%';
-		document.getElementById('stream-button-right-container').style.transition = 'padding-right 0.5s';
-		document.getElementById('stream-button-right-container').style.paddingRight = '0px';
 		document.getElementById('livestream').style.width = '100%';
 	}
 }
