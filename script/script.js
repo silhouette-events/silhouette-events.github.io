@@ -1,7 +1,8 @@
 var volumeSlider = document.getElementById("volume-slider");
 var volumeSliderDisplay = document.getElementById("volume-slider-display");
-volumeSliderDisplay.style.width = volumeSlider.value * 0.94 + 'px';
-var preMuteVolume = 25;
+volumeSlider.value = 100;
+volumeSliderDisplay.style.width = '94px';
+var preMuteVolume = 100;
 var chatStatus = 0;
 var playStatus = 0;
 
@@ -34,7 +35,7 @@ const player = new Twitch.Player("livestream", options);
 player.addEventListener(Twitch.Player.READY, function() {
 	player.setQuality('auto');
 	player.setMuted(false);
-	player.setVolume(0.5);
+	player.setVolume(1);
 });
 
 volumeSlider.oninput = function() {
@@ -69,7 +70,7 @@ function streamMute() {
 
 function streamUnmute() {
 	if (preMuteVolume == 0) {
-		preMuteVolume = 25;
+		preMuteVolume = 100;
 	}
 	volumeSlider.value = preMuteVolume;
 	volumeSliderDisplay.style.width = volumeSlider.value * 0.94 + 'px';
