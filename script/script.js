@@ -266,6 +266,12 @@ $(window).keypress(function(e) {
 
 function playerOnline() {
 	document.getElementById('livestream-container').style.height = '100vh';
+	document.getElementById('banner').style.height = '0px';
+	goActive();
+	setTimeout(function() {
+		document.getElementById('livestream-container').style.pointerEvents = 'none';
+		goActive();
+	}, 1000);
 }
 
 function playerOffline() {
@@ -273,4 +279,6 @@ function playerOffline() {
 	document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
 	document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
 	document.getElementById('livestream-container').style.height = '0px';
+	document.getElementById('livestream-container').style.height = '50vh';
+	document.getElementById('livestream-container').style.pointerEvents = 'none';
 }
