@@ -147,11 +147,13 @@ function toggleChat() {
 		document.getElementById('livestream-chat-container').style.width = '400px';
 		document.getElementById('livestream-chat-container').style.left = 'calc(100% - 400px)';
 		document.getElementById('livestream').style.width = 'calc(100% - 400px)';
+		document.getElementById('chat-mouse-detector').style.display = 'block';
 	} else {
 		chatStatus = 0;
 		document.getElementById('livestream-chat-container').style.width = '0px';
 		document.getElementById('livestream-chat-container').style.left = '100%';
 		document.getElementById('livestream').style.width = '100%';
+		document.getElementById('chat-mouse-detector').style.display = 'none';
 	}
 }
 
@@ -171,7 +173,6 @@ function setup() {
 setup();
  
 function startTimer() {
-    // wait 2 seconds before calling goInactive
     timeoutID = window.setTimeout(goInactive, 2000);
 }
  
@@ -182,22 +183,12 @@ function resetTimer(e) {
 }
  
 function goInactive() {
-    console.log('inactive');
-	console.log('inactive');
-	console.log('inactive');
-	console.log('inactive');
-	console.log('inactive');
 	document.getElementById('stream-mouse-detector').style.cursor = 'none';
 	document.getElementById('stream-button-panel-container').style.pointerEvents = 'none';
 	document.getElementById('stream-button-panel-container').style.opacity = '0';
 }
  
 function goActive() {
-    console.log('active');
-	console.log('active');
-	console.log('active');
-	console.log('active');
-	console.log('active');
 	document.getElementById('stream-mouse-detector').style.cursor = 'pointer';
 	document.getElementById('stream-button-panel-container').style.pointerEvents = 'auto';
 	document.getElementById('stream-button-panel-container').style.opacity = '1';
@@ -214,3 +205,54 @@ function streamToggle() {
 		displayPause();
 	}
 }
+
+jQuery.fn.single_double_click = function(single_click_callback, double_click_callback, timeout) {
+  return this.each(function(){
+    var clicks = 0, self = this;
+    jQuery(this).click(function(event){
+      clicks++;
+      if (clicks == 1) {
+        setTimeout(function(){
+          if(clicks == 1) {
+            single_click_callback.call(self, event);
+          } else {
+            double_click_callback.call(self, event);
+          }
+          clicks = 0;
+        }, timeout || 300);
+      }
+    });
+  });
+}
+
+$("#stream-mouse-detector").single_double_click(function() {
+	streamToggle();
+}, function() {
+	toggleFullscreen();
+});
+
+$("#chat-mouse-detector").single_double_click(function() {
+	chatStatus = 0;
+	document.getElementById('livestream-chat-container').style.width = '0px';
+	document.getElementById('livestream-chat-container').style.left = '100%';
+	document.getElementById('livestream').style.width = '100%';
+	document.getElementById('chat-mouse-detector').style.display = 'none';
+}, function() {
+	toggleFullscreen();
+})
+
+document.addEventListener('keyup', function (event) {
+    if (event.defaultPrevented) {
+        return;
+    }
+    var key = event.key || event.keyCode;
+    if (key === 'F' || key === 'f' || key === 70) {
+        toggleFullscreen();
+    }
+});
+
+$(window).keypress(function(e) {
+    if (e.which === 32) {
+        streamToggle();
+    }
+});

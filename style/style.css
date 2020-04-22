@@ -165,3 +165,15 @@ body {
 	opacity: 0;
 	cursor: pointer;
 }
+
+#chat-mouse-detector {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: transparent;
+	opacity: 0;
+	cursor: pointer;
+	display: none;
+}
