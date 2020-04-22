@@ -269,7 +269,7 @@ function playerOnline() {
 	document.getElementById('banner').style.height = '0px';
 	goActive();
 	setTimeout(function() {
-		document.getElementById('livestream-container').style.pointerEvents = 'none';
+		document.getElementById('livestream-container').style.pointerEvents = 'auto';
 		goActive();
 	}, 1000);
 }

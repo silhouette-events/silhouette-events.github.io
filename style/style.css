@@ -194,4 +194,5 @@ body {
 	color: white;
 	line-height: 50vh;
 	text-align: center;
+	border-bottom: 2px solid red;
 }
