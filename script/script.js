@@ -255,4 +255,7 @@ $(window).keypress(function(e) {
     if (e.which === 32) {
         streamToggle();
     }
+	if (e.which === 32 && e.target == document.body) {
+		return false;
+	}
 });
