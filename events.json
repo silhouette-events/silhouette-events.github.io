@@ -1,1 +1,14 @@
-[{"title":"titletest","img-id":"img-idtest","description":"descriptiontest","link":"linktest"},{"title":"titletest","img-id":"img-idtest","description":"descriptiontest","link":"linktest"}]
+[
+  {
+    "title": "Development",
+    "img-id": "test-event.png",
+    "description": "We're still a startup, so please bear with us here as we iron out the technicalities. We'd really appreciate if you supported us by donating or even just joining our mailing list. Seeing your email in our database would really keep us going. We're still a startup, so please bear with us here as we iron out the technicalities. We'd really appreciate if you supported us by donating or even just joining our mailing list. Seeing your email in our database would really keep us going.",
+    "link": "google.com"
+  },
+  {
+    "title": "Host Trial",
+    "img-id": "test-event-2.png",
+    "description": "See yourself as an aspiring radio host? Give yourself a shot at Silhouette! We're currently accepting host trials and experimental shows, so this might be your chance to get yourself on air. Have your voice heard. Here, at Silhouette. See yourself as an aspiring radio host? Give yourself a shot at Silhouette! We're currently accepting host trials and experimental shows, so this might be your chance to get yourself on air. Have your voice heard. Here, at Silhouette.",
+    "link": "beatsturning.com/contact"
+  }
+]

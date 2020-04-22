@@ -287,9 +287,36 @@ function playerOffline() {
 	document.getElementById('livestream-container').style.pointerEvents = 'none';
 }
 
-var JSONItems = [];
-$.getJSON( "./events.json", function( data){
-	JSONItems = data;
-	console.log(JSONItems);
-	alert(JSONItems);
+var eventList = [];
+var element = document.getElementById('event-list-container');
+$.getJSON( "./events.json", function(data){
+	eventList = data;
+	console.log(eventList);
+	var i = 0;
+	while (i < eventList.length) {
+		var newDiv = document.createElement('div');
+		element.appendChild(newDiv);
+		newDiv.classList.add("event-container");
+		var newImg = document.createElement('div');
+		newImg.classList.add("event-image");
+		newDiv.appendChild(newImg);
+		newImg.style.backgroundImage = "url('https://beatsturning.com/data/event-thumbnails/" + eventList[i]['img-id'] + "')";
+		var newTextSpace = document.createElement('div');
+		newTextSpace.classList.add("event-text-container");
+		newDiv.appendChild(newTextSpace);
+		var newTitle = document.createElement('h4');
+		var newNode = document.createTextNode(eventList[i]['title']);
+		newTitle.appendChild(newNode);
+		newTextSpace.appendChild(newTitle);
+		var newPara = document.createElement('p');
+		var newNode = document.createTextNode(eventList[i]['description']);
+		newPara.appendChild(newNode);
+		newTextSpace.appendChild(newPara);
+		var newLink = document.createElement('a');
+		var newNode = document.createTextNode(eventList[i]['link']);
+		newLink.appendChild(newNode);
+		newTextSpace.appendChild(newLink);
+		newLink.href = 'https://' + eventList[i]['link'];
+		i++;
+	}
 });
