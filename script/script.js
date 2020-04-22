@@ -206,7 +206,7 @@ function goActive() {
 }
 
 function streamToggle() {
-	if (playStatus == 1) {
+	if (playStatus == 0) {
 		player.play();
 		displayPlay();
 	} else {
