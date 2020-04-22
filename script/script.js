@@ -286,3 +286,10 @@ function playerOffline() {
 	}
 	document.getElementById('livestream-container').style.pointerEvents = 'none';
 }
+
+var JSONItems = [];
+$.getJSON( "./events.json", function( data){
+	JSONItems = data;
+	console.log(JSONItems);
+	alert(JSONItems);
+});
