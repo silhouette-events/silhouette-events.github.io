@@ -3,6 +3,7 @@ var volumeSliderDisplay = document.getElementById("volume-slider-display");
 volumeSliderDisplay.style.width = volumeSlider.value * 0.94 + 'px';
 var preMuteVolume = 25;
 var chatStatus = 0;
+var playStatus = 0;
 
 if (volumeSlider.value > 50) {
 	document.getElementById('stream-button-volume-full').style.display = 'inline-block';
@@ -87,11 +88,13 @@ function streamUnmute() {
 player.addEventListener(Twitch.Player.PLAY, function() {
 	document.getElementById('stream-button-pause').style.display = 'inline-block';
 	document.getElementById('stream-button-play').style.display = 'none';
+	playStatus = 1;
 });
 
 player.addEventListener(Twitch.Player.PAUSE, function() {
 	document.getElementById('stream-button-play').style.display = 'inline-block';
 	document.getElementById('stream-button-pause').style.display = 'none';
+	playStatus = 0;
 });
 
 player.addEventListener(Twitch.Player.ONLINE, function() {
@@ -149,5 +152,65 @@ function toggleChat() {
 		document.getElementById('livestream-chat-container').style.width = '0px';
 		document.getElementById('livestream-chat-container').style.left = '100%';
 		document.getElementById('livestream').style.width = '100%';
+	}
+}
+
+var timeoutID;
+ 
+function setup() {
+    this.addEventListener("mousemove", resetTimer, false);
+    this.addEventListener("mousedown", resetTimer, false);
+    this.addEventListener("keypress", resetTimer, false);
+    this.addEventListener("DOMMouseScroll", resetTimer, false);
+    this.addEventListener("mousewheel", resetTimer, false);
+    this.addEventListener("touchmove", resetTimer, false);
+    this.addEventListener("MSPointerMove", resetTimer, false);
+ 
+    startTimer();
+}
+setup();
+ 
+function startTimer() {
+    // wait 2 seconds before calling goInactive
+    timeoutID = window.setTimeout(goInactive, 2000);
+}
+ 
+function resetTimer(e) {
+    window.clearTimeout(timeoutID);
+ 
+    goActive();
+}
+ 
+function goInactive() {
+    console.log('inactive');
+	console.log('inactive');
+	console.log('inactive');
+	console.log('inactive');
+	console.log('inactive');
+	document.getElementById('stream-mouse-detector').style.cursor = 'none';
+	document.getElementById('stream-button-panel-container').style.pointerEvents = 'none';
+	document.getElementById('stream-button-panel-container').style.opacity = '0';
+}
+ 
+function goActive() {
+    console.log('active');
+	console.log('active');
+	console.log('active');
+	console.log('active');
+	console.log('active');
+	document.getElementById('stream-mouse-detector').style.cursor = 'pointer';
+	document.getElementById('stream-button-panel-container').style.pointerEvents = 'auto';
+	document.getElementById('stream-button-panel-container').style.opacity = '1';
+         
+    startTimer();
+}
+
+function streamToggle() {
+	if (playStatus == 1) {
+		player.play();
+		displayPlay();
+	} else {
+		player.pause();
+		displayPause();
 	}
 }

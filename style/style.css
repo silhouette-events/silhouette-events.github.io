@@ -135,6 +135,7 @@ body {
 	height: 0px;
 	position: relative;
 	top: 100%;
+	transition: opacity 0.3s;
 }
 
 #livestream {
@@ -145,11 +146,22 @@ body {
 
 #livestream-chat-container {
 	height: 100vh;
-	background-color: blue;
+	background-color: white;
 	width: 0px;
 	overflow: hidden;
 	position: absolute;
 	z-index: 1;
 	left: calc(100% - 0px);
 	transition: width 0.4s, left 0.4s;
+}
+
+#stream-mouse-detector {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: transparent;
+	opacity: 0;
+	cursor: pointer;
 }
