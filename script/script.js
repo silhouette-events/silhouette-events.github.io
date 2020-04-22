@@ -5,6 +5,7 @@ volumeSliderDisplay.style.width = '94px';
 var preMuteVolume = 100;
 var chatStatus = 0;
 var playStatus = 0;
+var onlineStatus = 0;
 
 if (volumeSlider.value > 50) {
 	document.getElementById('stream-button-volume-full').style.display = 'inline-block';
@@ -99,11 +100,13 @@ player.addEventListener(Twitch.Player.PAUSE, function() {
 });
 
 player.addEventListener(Twitch.Player.ONLINE, function() {
-	document.getElementById('status2').innerHTML = 'online';
+	onlineStatus = 1;
+	playerOnline();
 });
 
 player.addEventListener(Twitch.Player.OFFLINE, function() {
-	document.getElementById('status2').innerHTML = 'offline';
+	onlineStatus = 1;
+	playerOffline();
 });
 
 player.addEventListener(Twitch.Player.PLAYING, function() {
@@ -260,3 +263,14 @@ $(window).keypress(function(e) {
 		return false;
 	}
 });
+
+function playerOnline() {
+	document.getElementById('livestream-container').style.height = '100vh';
+}
+
+function playerOffline() {
+	document.exitFullscreen();
+	document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
+	document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
+	document.getElementById('livestream-container').style.height = '0px';
+}
