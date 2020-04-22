@@ -191,9 +191,11 @@ body {
 	height: 50vh;
 	transition: height 1s;
 	overflow: hidden;
-	background-color: black;
-	color: white;
+	background-color: white;
+	color: black;
 	line-height: 50vh;
 	text-align: center;
 	border-bottom: 2px solid red;
+	position: relative;
+	bottom: 2px;
 }
