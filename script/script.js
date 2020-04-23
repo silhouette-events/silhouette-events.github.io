@@ -6,6 +6,7 @@ var preMuteVolume = 100;
 var chatStatus = 0;
 var playStatus = 0;
 var onlineStatus = 0;
+var fullscreenStatus = 0;
 
 if (volumeSlider.value > 50) {
 	document.getElementById('stream-button-volume-full').style.display = 'inline-block';
@@ -138,10 +139,12 @@ function toggleFullscreen() {
 		document.exitFullscreen();
 		document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
 		document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
+		fullscreenStatus = 0;
 	} else {
 		document.querySelector('#livestream-container').requestFullscreen();
 		document.getElementById('stream-button-fullscreen-enter').style.display = 'none';
 		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
+		fullscreenStatus = 1;
 	}
 }
 
@@ -344,5 +347,12 @@ setInterval(function() {
 		document.getElementById('livestream').style.height = window.innerHeight + 'px';
 	} else {
 		document.getElementById('livestream').style.height = null;
+		if (fullscreenStatus == 1) {
+			document.getElementById('livestream-chat-parent').style.display = 'none';
+			document.getElementById('livestream').style.height = window.innerHeight + 'px';
+		} else {
+			document.getElementById('livestream').style.height = null;
+			document.getElementById('livestream-chat-parent').style.display = 'block';
+		}
 	}
 }, 0);
