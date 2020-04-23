@@ -148,16 +148,24 @@ function toggleFullscreen() {
 function toggleChat() {
 	if (chatStatus == 0) {
 		chatStatus = 1;
+		document.getElementById('livestream-chat-container').style.transition = 'width 0.4s, left 0.4s';
 		document.getElementById('livestream-chat-container').style.width = '400px';
 		document.getElementById('livestream-chat-container').style.left = 'calc(100% - 400px)';
 		document.getElementById('livestream').style.width = 'calc(100% - 400px)';
 		document.getElementById('chat-mouse-detector').style.display = 'block';
+		setTimeout(function() {
+			document.getElementById('livestream-chat-container').style.transition = '0s';
+		}, 400);
 	} else {
 		chatStatus = 0;
-		document.getElementById('livestream-chat-container').style.width = '0px';
-		document.getElementById('livestream-chat-container').style.left = '100%';
+		document.getElementById('livestream-chat-container').style.transition = 'width 0.4s, left 0.4s';
+		document.getElementById('livestream-chat-container').style.width = null;
+		document.getElementById('livestream-chat-container').style.left = null;
 		document.getElementById('livestream').style.width = '100%';
 		document.getElementById('chat-mouse-detector').style.display = 'none';
+		setTimeout(function() {
+			document.getElementById('livestream-chat-container').style.transition = '0s';
+		}, 400);
 	}
 }
 
@@ -265,11 +273,17 @@ $(window).keypress(function(e) {
 });
 
 function playerOnline() {
+	document.getElementById('livestream-container').style.transition = 'height 1s';
 	document.getElementById('livestream-container').style.height = '100vh';
 	document.getElementById('banner').style.height = '0px';
+	document.getElementById('livestream-container').style.borderBottom = '2px solid red';
+	document.getElementById('livestream-container').style.borderTop = '2px solid red';
 	goActive();
 	setTimeout(function() {
 		document.getElementById('livestream-container').style.pointerEvents = 'auto';
+		document.getElementById('livestream-container').style.transition = '0s';
+		document.getElementById('livestream-container').style.borderBottom = '2px solid transparent';
+		document.getElementById('livestream-container').style.borderTop = '2px solid transparent';
 		goActive();
 	}, 1000);
 }
@@ -278,6 +292,7 @@ function playerOffline() {
 	document.exitFullscreen();
 	document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
 	document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
+	document.getElementById('livestream-container').style.transition = 'height 1s';
 	document.getElementById('livestream-container').style.height = '0px';
 	if (document.getElementById('banner').clientWidth > 700) {
 		document.getElementById('banner').style.height = '50vh';
@@ -285,12 +300,15 @@ function playerOffline() {
 		document.getElementById('banner').style.height = '100vh';
 	}
 	document.getElementById('livestream-container').style.pointerEvents = 'none';
+	setTimeout(function() {
+		document.getElementById('livestream-container').style.transition = '0s';
+	}, 1000);
 }
 
 var eventList = [];
 var element = document.getElementById('event-list-container');
-$.getJSON( "./events.json", function(data){
-	eventList = data;
+$.getJSON( "https://beatsturning.com/data/getevents.php", function(data){
+	eventList = JSON.parse(data);
 	console.log(eventList);
 	var i = 0;
 	while (i < eventList.length) {
@@ -320,3 +338,11 @@ $.getJSON( "./events.json", function(data){
 		i++;
 	}
 });
+
+setInterval(function() {
+	if (document.getElementById('livestream-container').clientWidth > 800) {
+		document.getElementById('livestream').style.height = window.innerHeight + 'px';
+	} else {
+		document.getElementById('livestream').style.height = null;
+	}
+}, 0);

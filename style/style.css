@@ -2,6 +2,7 @@ body {
 	margin: 0px;
 	background-color: black;
 	font-family: montserrat;
+	overflow-x: hidden;
 }
 
 @font-face {
@@ -164,7 +165,7 @@ body {
 	position: absolute;
 	z-index: 1;
 	left: calc(100% - 0px);
-	transition: width 0.4s, left 0.4s;
+	transition: 0s;
 }
 
 #stream-mouse-detector {
@@ -196,6 +197,42 @@ body {
 	overflow: hidden;
 	transition: height 1s;
 	pointer-events: none;
+	border-top: 2px solid transparent;
+	border-bottom: 2px solid transparent;
+	position: relative;
+	bottom: 2px;
+}
+
+#livestream-chat-parent {
+	width: 100%;
+	height: 100%;
+}
+
+@media screen and (max-width: 800px) {
+	#stream-button-chat {
+		display: none;
+	}
+	#livestream-chat-container {
+		width: 100%;
+		height: 0px;
+		top: 56.25vw;
+		left: 0px;
+		position: relative;
+		overflow: visible;
+	}
+	#livestream-chat-parent {
+		height: calc(100vh - 56.25vw);
+		min-height: 350px;
+		background-color: red;
+	}
+	#livestream {
+		height: 56.25vw;
+		position: relative;
+		bottom: 0px;
+	}
+	#livestream-container {
+		min-height: calc(56.25vw + 350px);
+	}
 }
 
 #banner {
@@ -206,7 +243,6 @@ body {
 	background-color: black;
 	color: white;
 	text-align: center;
-	border-bottom: 2px solid red;
 	position: relative;
 	bottom: 2px;
 	font-family: lemonmilk;
@@ -269,32 +305,38 @@ body {
 }
 
 #event-list-container {
-	max-width: 90%;
+	width: 90%;
+	max-width: 1600px;
 	margin-left: auto;
 	margin-right: auto;
+	overflow-x: hidden;
+}
+
+#event-header {
+	font-family: lemonmilk;
+	letter-spacing: 0.05em;
+	color: white;
+	text-align: center;
+	font-size: calc(5em + 5vw);
 }
 
 .event-container {
 	margin: 10px;
-	border: 2px solid black;
 	transition: border 0.3s, height 0.4s;
 	background-color: black;
 	margin-top: 100px;
 	color: white;
 }
 
-.event-container:hover {
-	border: 2px solid red;
-}
-
 .event-image {
 	display: inline-block;
-	width: calc(50px + 10vw);
-	height: calc(50px + 10vw);
+	width: calc(50px + 15vw);
+	height: calc(50px + 15vw);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	margin-bottom: -4px;
+	opacity: 0.5;
 }
 
 .event-container h4 {
@@ -309,42 +351,78 @@ body {
 .event-container p {
 	margin: 1vw;
 	margin-top: 0px;
-	font-size: calc(0.2em + 0.9vw);
+	font-size: calc(0.2em + 1.1vw);
 	margin-bottom: 0px;
 }
 
 .event-text-container {
-	width: calc(100% - 70px - 10vw);
+	width: calc(100% - 70px - 15vw);
 	display: inline-block;
 	vertical-align: top;
 }
 
 .event-container a {
 	margin: 1vw;
-	font-size: calc(0.1em + 0.8vw);
+	font-size: calc(0.3em + 1.1vw);
 	color: red;
 	text-decoration: underline;
+	margin-top: 2vw;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
 	.event-text-container {
 		width: 100%;
 		text-align: center;
 	}
 	.event-image {
 		width: 100%;
-		height: 30vh;
+		height: 30vw;
 	}
 	.event-container h4 {
-		font-size: 3em;
+		font-size: 6vw;
+		padding-top: 20px;
+		height: 0px;
+		position: relative;
+		bottom: 23vw;
 	}
-	.event-container p, .event-container a {
-		font-size: 1em;
+	.event-container p {
+		font-size: 1.3em;
 	}
-	.event-container:hover {
-		border: none;
+	.event-container a {
+		font-size: 1.5em;
 	}
 	.event-container {
-		border: none
+		margin: 0px;
+		padding-bottom: 50px;
+	}
+	#event-list-container {
+		width: 70%;
+		max-width: 100%;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	.event-image {
+		height: 100vw;
+	}
+	.event-container h4 {
+		font-size: 8vw;
+		bottom: 60vw;
+	}
+	#event-list-container {
+		width: 100%;
+	}
+	#event-header {
+		font-size: 20vw;
+	}
+}
+
+/*@media screen and (min-width: 1200px) {
+	.event-image {
+		width: 300px;
+		height: 300px;
+	}
+	.event-text-container {
+		width: calc(100% - 300px);
+	}
+}*/
