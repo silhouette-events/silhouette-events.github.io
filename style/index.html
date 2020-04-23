@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="./style/style.css" rel="stylesheet" type="text/css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://player.twitch.tv/js/embed/v1.js"></script>
+	</head>
+	<body>
+		<div id=banner>
+			<div id=banner-logo>
+				<div id=banner-record-container>
+					<div id=banner-record></div>
+				</div>
+				<h1 id=banner-title>SILHOUETTE</h1>
+				<h2 id=banner-subtitle>EVENTS</h2>
+			</div>
+		</div>
+		<div id=livestream-container>
+			<div id=livestream>
+				<div id=stream-mouse-detector></div>
+				<div id=chat-mouse-detector></div>
+				<div id=stream-button-panel-container>
+					<div id=stream-button-panel>
+						<div class=stream-button-container>
+							<img class=stream-standard-button id=stream-button-play src="./style/images/play-button.png" onClick="streamPlay()" />
+							<img class=stream-standard-button id=stream-button-pause src="./style/images/pause-button.png" onClick="streamPause()" />
+							<div id=stream-button-volume-container>
+								<img class=stream-button-volume id=stream-button-volume-full src="./style/images/volume-button-full.png" onClick="streamMute()"/>
+								<img class=stream-button-volume id=stream-button-volume-low src="./style/images/volume-button-low.png" onClick="streamMute()"/>
+								<img class=stream-button-volume id=stream-button-volume-mute src="./style/images/volume-button-mute.png" onClick="streamUnmute()"/>
+								<div id=volume-slider-container>
+									<input type="range" min=0 max=100 value=100 id=volume-slider>
+									<div id=volume-slider-display-container>
+										<div id=volume-slider-display>
+											<div id=volume-slider-knob-container>
+												<div id=volume-slider-knob>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id=stream-button-right-container>
+								<img class=stream-standard-button-right id=stream-button-chat src="./style/images/chat-button.png" onClick="toggleChat()" />
+								<img class=stream-standard-button-right id=stream-button-fullscreen-enter src="./style/images/fullscreen-button-enter.png" onClick="toggleFullscreen()" />
+								<img class=stream-standard-button-right id=stream-button-fullscreen-exit src="./style/images/fullscreen-button-exit.png" onClick="toggleFullscreen()" style="display:none" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id=livestream-chat-container>
+					<div id=livestream-chat-parent>
+						<iframe id=livestream-chat frameborder="0" scrolling="no" id="monstercat" src="https://www.twitch.tv/embed/monstercat/chat?parent=events.silhouetteradio.xyz" height="100%" width="100%"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h2 id=event-header>Events</h2>
+		<div id=event-list-container>
+		
+		</div>
+		<script src="./script/script.js"></script>
+	</body>
+</html>
