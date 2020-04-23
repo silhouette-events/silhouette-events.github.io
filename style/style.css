@@ -223,7 +223,7 @@ body {
 	#livestream-chat-parent {
 		height: calc(100vh - 56.25vw);
 		min-height: 350px;
-		background-color: red;
+		background-color: black;
 	}
 	#livestream {
 		height: 56.25vw;
