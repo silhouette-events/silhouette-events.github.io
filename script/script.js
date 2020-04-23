@@ -345,8 +345,10 @@ $.getJSON( "https://beatsturning.com/data/getevents.php", function(data){
 setInterval(function() {
 	if (document.getElementById('livestream-container').clientWidth > 800) {
 		document.getElementById('livestream').style.height = window.innerHeight + 'px';
+		document.getElementById('livestream-chat-parent').style.height = null;
 	} else {
 		document.getElementById('livestream').style.height = null;
+		document.getElementById('livestream-chat-parent').style.height = 'calc(' + window.innerHeight + 'px - 56.25vw)';
 		if (fullscreenStatus == 1) {
 			document.getElementById('livestream-chat-parent').style.display = 'none';
 			document.getElementById('livestream').style.height = window.innerHeight + 'px';
