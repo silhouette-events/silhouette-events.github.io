@@ -383,10 +383,11 @@ $.getJSON( "https://beatsturning.com/data/getevents.php", function(data){
 		newPara.appendChild(newNode);
 		newTextSpace.appendChild(newPara);
 		var newLink = document.createElement('a');
-		var newNode = document.createTextNode(eventList[i]['link']);
+		var newNode = document.createTextNode(eventList[i]['link-msg']);
 		newLink.appendChild(newNode);
 		newTextSpace.appendChild(newLink);
-		newLink.onclick ="window.open('https://" + eventList[i]['link'] + "','_blank')";
+		newLink.href = 'https://' + eventList[i]['link'];
+		newLink.target = '_blank';
 		i++;
 	}
 });
