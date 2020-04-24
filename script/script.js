@@ -13,6 +13,7 @@ var playStatus = 0;
 var onlineStatus = 0;
 var fullscreenStatus = 0;
 var resStatus;
+firstPlay = 0;
 
 if (document.getElementById('banner').clientWidth > 800) {
 	resStatus = 1;
@@ -137,6 +138,9 @@ player.addEventListener(Twitch.Player.OFFLINE, function() {
 
 player.addEventListener(Twitch.Player.PLAYING, function() {
 	console.log(player.getQualities());
+	if (firstPlay == 0) {
+		displayPlay();
+	}
 });
 
 function streamPlay() {
@@ -167,6 +171,7 @@ function displayPause() {
 }
 
 function displayPlay() {
+	firstPlay = 1;
 	document.getElementById('stream-button-pause').style.display = 'inline-block';
 	document.getElementById('stream-button-play').style.display = 'none';
 	document.getElementById('stream-center-icon').style.transition = 'opacity 0.1s, transform 0.5s';
