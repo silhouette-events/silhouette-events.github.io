@@ -409,7 +409,7 @@ function toggleFullscreen() {
 		document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
 		fullscreenStatus = 0;
 		if (document.getElementById('banner').clientWidth <= 800) {
-			document.getElementById('livestream').style.height = '100vh';
+			document.getElementById('livestream').style.height = '56.25vw';
 		}
 	} else {
 		document.querySelector('#livestream-container').requestFullscreen();
@@ -417,7 +417,7 @@ function toggleFullscreen() {
 		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
 		fullscreenStatus = 1;
 		if (document.getElementById('banner').clientWidth <= 800) {
-			document.getElementById('livestream').style.height = '56.25vw';
+			document.getElementById('livestream').style.height = '100vh';
 		}
 	}
 }
