@@ -270,7 +270,7 @@ body {
 		bottom: 0px;
 	}
 	#livestream-container {
-		min-height: calc(56.25vw + 350px);
+		min-height: calc(56.25vw + 150px);
 	}
 	#event-header {
 		margin-top: 200px;

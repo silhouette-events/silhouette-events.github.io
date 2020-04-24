@@ -192,20 +192,6 @@ function displayPlay() {
 	}, 400);
 }
 
-function toggleFullscreen() {
-	if ((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
-		document.exitFullscreen();
-		document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
-		document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
-		fullscreenStatus = 0;
-	} else {
-		document.querySelector('#livestream-container').requestFullscreen();
-		document.getElementById('stream-button-fullscreen-enter').style.display = 'none';
-		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
-		fullscreenStatus = 1;
-	}
-}
-
 function toggleChat() {
 	if (chatStatus == 0) {
 		chatStatus = 1;
@@ -344,7 +330,7 @@ function playerOnline() {
 	document.getElementById('livestream-container').style.borderTop = '2px solid red';
 	document.getElementById('banner-offline-marker').style.opacity = '0';
 	if (document.getElementById('livestream-container').clientWidth < 800) {
-		document.getElementById('livestream-container').style.minHeight = 'calc(56.25vw + 350px)';
+		document.getElementById('livestream-container').style.minHeight = 'calc(56.25vw + 150px)';
 	}
 	goActive();
 	setTimeout(function() {
@@ -416,6 +402,26 @@ $.getJSON( "https://beatsturning.com/data/getevents.php", function(data){
 	}
 });
 
+function toggleFullscreen() {
+	if ((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+		document.exitFullscreen();
+		document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
+		document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
+		fullscreenStatus = 0;
+		if (document.getElementById('banner').clientWidth <= 800) {
+			document.getElementById('livestream').style.height = '100vh';
+		}
+	} else {
+		document.querySelector('#livestream-container').requestFullscreen();
+		document.getElementById('stream-button-fullscreen-enter').style.display = 'none';
+		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
+		fullscreenStatus = 1;
+		if (document.getElementById('banner').clientWidth <= 800) {
+			document.getElementById('livestream').style.height = window.innerHeight + 'px';
+		}
+	}
+}
+
 setInterval(function() {
 	if (document.getElementById('banner').clientWidth > 800 && resStatus == 0) { //resize to large
 		resStatus = 1;
@@ -445,7 +451,7 @@ setInterval(function() {
 		document.getElementById('livestream').style.transition = '0s';
 		document.getElementById('livestream').style.width = '100%';
 		document.getElementById('chat-mouse-detector').style.display = 'none';
-		document.getElementById('livestream-container').style.minHeight = '350px';
+		document.getElementById('livestream-container').style.minHeight = '150px';
 		setTimeout(function() {
 			document.getElementById('livestream').style.transition = 'width 0.4s';
 		}, 50);
