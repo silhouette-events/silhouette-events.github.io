@@ -8,6 +8,18 @@ var playStatus = 0;
 var onlineStatus = 0;
 var fullscreenStatus = 0;
 
+window.onload = function() {
+	setTimeout(function() {
+		document.body.style.overflowY = 'auto';
+		if (onlineStatus == 0) {
+			document.getElementById('banner-offline-marker').style.opacity = '1';
+			if (document.getElementById('banner').clientWidth > 700) {
+				document.getElementById('banner').style.height = '50vh';
+			}
+		}
+	}, 500);
+}
+
 if (volumeSlider.value > 50) {
 	document.getElementById('stream-button-volume-full').style.display = 'inline-block';
 	document.getElementById('stream-button-volume-low').style.display = 'none';
@@ -127,11 +139,35 @@ function streamPause() {
 function displayPause() {
 	document.getElementById('stream-button-play').style.display = 'inline-block';
 	document.getElementById('stream-button-pause').style.display = 'none';
+	document.getElementById('stream-center-icon').style.transition = 'opacity 0.1s, transform 0.5s';
+	document.getElementById('stream-center-icon').style.opacity = '1';
+	document.getElementById('stream-center-icon').style.transform = 'scale(2)';
+	document.getElementById('stream-center-icon-play').style.display = 'none';
+	document.getElementById('stream-center-icon-pause').style.display = 'block';
+	setTimeout(function() {
+		document.getElementById('stream-center-icon').style.opacity = '0';
+		setTimeout(function() {
+			document.getElementById('stream-center-icon').style.transition = '0s';
+			document.getElementById('stream-center-icon').style.transform = 'scale(1)';
+		}, 100);
+	}, 400);
 }
 
 function displayPlay() {
 	document.getElementById('stream-button-pause').style.display = 'inline-block';
 	document.getElementById('stream-button-play').style.display = 'none';
+	document.getElementById('stream-center-icon').style.transition = 'opacity 0.1s, transform 0.5s';
+	document.getElementById('stream-center-icon').style.opacity = '1';
+	document.getElementById('stream-center-icon').style.transform = 'scale(2)';
+	document.getElementById('stream-center-icon-pause').style.display = 'none';
+	document.getElementById('stream-center-icon-play').style.display = 'block';
+	setTimeout(function() {
+		document.getElementById('stream-center-icon').style.opacity = '0';
+		setTimeout(function() {
+			document.getElementById('stream-center-icon').style.transition = '0s';
+			document.getElementById('stream-center-icon').style.transform = 'scale(1)';
+		}, 100);
+	}, 400);
 }
 
 function toggleFullscreen() {
@@ -204,7 +240,7 @@ function goInactive() {
 }
  
 function goActive() {
-	document.getElementById('stream-mouse-detector').style.cursor = 'pointer';
+	document.getElementById('stream-mouse-detector').style.cursor = 'auto';
 	document.getElementById('stream-button-panel-container').style.pointerEvents = 'auto';
 	document.getElementById('stream-button-panel-container').style.opacity = '1';
          
@@ -248,10 +284,14 @@ $("#stream-mouse-detector").single_double_click(function() {
 
 $("#chat-mouse-detector").single_double_click(function() {
 	chatStatus = 0;
+	document.getElementById('livestream-chat-container').style.transition = 'width 0.4s, left 0.4s';
 	document.getElementById('livestream-chat-container').style.width = '0px';
 	document.getElementById('livestream-chat-container').style.left = '100%';
 	document.getElementById('livestream').style.width = '100%';
 	document.getElementById('chat-mouse-detector').style.display = 'none';
+	setTimeout(function() {
+		document.getElementById('livestream-chat-container').style.transition = '0s';
+	}, 400);
 }, function() {
 	toggleFullscreen();
 })
@@ -281,6 +321,7 @@ function playerOnline() {
 	document.getElementById('banner').style.height = '0px';
 	document.getElementById('livestream-container').style.borderBottom = '2px solid red';
 	document.getElementById('livestream-container').style.borderTop = '2px solid red';
+	document.getElementById('banner-offline-marker').style.opacity = '0';
 	goActive();
 	setTimeout(function() {
 		document.getElementById('livestream-container').style.pointerEvents = 'auto';
@@ -297,6 +338,7 @@ function playerOffline() {
 	document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
 	document.getElementById('livestream-container').style.transition = 'height 1s';
 	document.getElementById('livestream-container').style.height = '0px';
+	document.getElementById('banner-offline-marker').style.opacity = '1';
 	if (document.getElementById('banner').clientWidth > 700) {
 		document.getElementById('banner').style.height = '50vh';
 	} else {
@@ -346,7 +388,16 @@ setInterval(function() {
 	if (document.getElementById('livestream-container').clientWidth > 800) {
 		document.getElementById('livestream').style.height = window.innerHeight + 'px';
 		document.getElementById('livestream-chat-parent').style.height = null;
+		document.getElementById('stream-button-volume-container').style.display = null;
 	} else {
+		document.getElementById('stream-button-volume-container').style.display = 'none';
+		player.setVolume(1);
+		volumeSlider.value = 100;
+		volumeSliderDisplay.style.width = '94px';
+		player.setMuted(false);
+		document.getElementById('stream-button-volume-full').style.display = 'inline-block';
+		document.getElementById('stream-button-volume-low').style.display = 'none';
+		document.getElementById('stream-button-volume-mute').style.display = 'none';
 		document.getElementById('livestream').style.height = null;
 		document.getElementById('livestream-chat-parent').style.height = 'calc(' + window.innerHeight + 'px - 56.25vw)';
 		if (fullscreenStatus == 1) {
