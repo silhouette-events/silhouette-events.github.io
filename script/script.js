@@ -53,7 +53,7 @@ const options = {
 	width: '100%',
 	height: '100%',
 	channel: "beatsturningstaff",
-	autoplay: true,
+	autoplay: false,
 	controls: false,
 };
 
@@ -417,7 +417,7 @@ function toggleFullscreen() {
 		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
 		fullscreenStatus = 1;
 		if (document.getElementById('banner').clientWidth <= 800) {
-			document.getElementById('livestream').style.height = window.innerHeight + 'px';
+			document.getElementById('livestream').style.height = '56.25vw';
 		}
 	}
 }
