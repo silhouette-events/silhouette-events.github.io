@@ -422,6 +422,7 @@ setInterval(function() {
 		//alert('resize to large');
 		document.getElementById('livestream').style.height = window.innerHeight + 'px';
 		document.getElementById('livestream-chat-parent').style.height = null;
+		document.getElementById('livestream-chat-parent').style.minHeight = '0px';
 		document.getElementById('stream-button-volume-container').style.display = null;
 		document.getElementById('livestream-container').style.minHeight = '0px';
 	}
@@ -444,8 +445,12 @@ setInterval(function() {
 		document.getElementById('livestream').style.transition = '0s';
 		document.getElementById('livestream').style.width = '100%';
 		document.getElementById('chat-mouse-detector').style.display = 'none';
+		document.getElementById('livestream-container').style.minHeight = '350px';
 		setTimeout(function() {
 			document.getElementById('livestream').style.transition = 'width 0.4s';
 		}, 50);
+	}
+	if (document.getElementById('banner').clientWidth <= 800 && fullscreenStatus == 0) {
+		document.getElementById('livestream-chat-parent').style.height = 'calc(' + window.innerHeight + 'px - 56.25vw)';
 	}
 }, 0);
