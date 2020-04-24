@@ -456,7 +456,13 @@ setInterval(function() {
 			document.getElementById('livestream').style.transition = 'width 0.4s';
 		}, 50);
 	}
-	if (document.getElementById('banner').clientWidth <= 800 && fullscreenStatus == 0) {
-		document.getElementById('livestream-chat-parent').style.height = 'calc(' + window.innerHeight + 'px - 56.25vw)';
+	if (document.getElementById('banner').clientWidth <= 800) {
+		if (fullscreenStatus == 0) {
+			document.getElementById('livestream-chat-parent').style.height = 'calc(' + window.innerHeight + 'px - 56.25vw)';
+			document.getElementById('livestream-chat-parent').style.display = 'block';
+		} else {
+			document.getElementById('livestream-chat-parent').style.display = 'none';
+		}
 	}
+	
 }, 0);
