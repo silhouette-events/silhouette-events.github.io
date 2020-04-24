@@ -44,7 +44,7 @@ if (volumeSlider.value > 50) {
 const options = {
 	width: '100%',
 	height: '100%',
-	channel: "iwicollective",
+	channel: "beatsturningstaff",
 	autoplay: true,
 	controls: false,
 };
