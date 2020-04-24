@@ -26,7 +26,6 @@ window.onload = function() {
 	setTimeout(function() {
 		document.getElementById('banner-offline-marker').innerHTML = "we're not live right now";
 		document.body.style.overflowY = 'auto';
-		document.body.style.height = 'auto';
 		if (onlineStatus == 0) {
 			document.getElementById('banner-offline-marker').style.opacity = '1';
 			document.getElementById('banner').style.height = '50vh';
@@ -53,7 +52,7 @@ if (volumeSlider.value > 50) {
 const options = {
 	width: '100%',
 	height: '100%',
-	channel: "iwicollective",
+	channel: "beatsturningstaff",
 	autoplay: true,
 	controls: false,
 };
@@ -141,6 +140,11 @@ player.addEventListener(Twitch.Player.PLAYING, function() {
 	if (firstPlay == 0) {
 		displayPlay();
 	}
+});
+
+player.addEventListener(Twitch.Player.PLAYBACK_BLOCKED, function() {
+	alert('playback blocked');
+	player.pause();
 });
 
 function streamPlay() {
@@ -362,10 +366,19 @@ function playerOffline() {
 	document.getElementById('banner-offline-marker').style.opacity = '1';
 	document.getElementById('livestream-container').style.pointerEvents = 'none';
 	document.getElementById('banner').style.height = '50vh';
+	chatStatus = 0;
+	document.getElementById('livestream-chat-container').style.transition = 'width 0.4s, left 0.4s';
+	document.getElementById('livestream-chat-container').style.width = null;
+	document.getElementById('livestream-chat-container').style.left = null;
+	document.getElementById('livestream').style.width = '100%';
+	document.getElementById('chat-mouse-detector').style.display = 'none';
 	setTimeout(function() {
-		document.getElementById('livestream-container').style.transition = '0s';
-		document.getElementById('livestream-container').style.borderTop = '2px solid transparent';
-	}, 1000);
+		document.getElementById('livestream-chat-container').style.transition = '0s';
+		setTimeout(function() {
+			document.getElementById('livestream-container').style.transition = '0s';
+			document.getElementById('livestream-container').style.borderTop = '2px solid transparent';
+		}, 6000);
+	}, 400);
 }
 
 var eventList = [];
@@ -413,7 +426,7 @@ setInterval(function() {
 		document.getElementById('livestream-container').style.minHeight = '0px';
 	}
 	
-	if (document.getElementById('banner').clientWidth < 801 && resStatus == 1) { //resize to small
+	if (document.getElementById('banner').clientWidth <= 800 && resStatus == 1) { //resize to small
 		resStatus = 0;
 		//alert('resize to small');
 		chatStatus = 0;
