@@ -1,3 +1,7 @@
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+}
+
 var volumeSlider = document.getElementById("volume-slider");
 var volumeSliderDisplay = document.getElementById("volume-slider-display");
 volumeSlider.value = 100;
@@ -9,8 +13,11 @@ var onlineStatus = 0;
 var fullscreenStatus = 0;
 
 window.onload = function() {
+	document.getElementById('banner-offline-marker').style.opacity = '0';
 	setTimeout(function() {
+		document.getElementById('banner-offline-marker').innerHTML = "we're not live right now";
 		document.body.style.overflowY = 'auto';
+		document.body.style.height = 'auto';
 		if (onlineStatus == 0) {
 			document.getElementById('banner-offline-marker').style.opacity = '1';
 			if (document.getElementById('banner').clientWidth > 700) {
@@ -319,14 +326,12 @@ function playerOnline() {
 	document.getElementById('livestream-container').style.transition = 'height 1s';
 	document.getElementById('livestream-container').style.height = '100vh';
 	document.getElementById('banner').style.height = '0px';
-	document.getElementById('livestream-container').style.borderBottom = '2px solid red';
 	document.getElementById('livestream-container').style.borderTop = '2px solid red';
 	document.getElementById('banner-offline-marker').style.opacity = '0';
 	goActive();
 	setTimeout(function() {
 		document.getElementById('livestream-container').style.pointerEvents = 'auto';
 		document.getElementById('livestream-container').style.transition = '0s';
-		document.getElementById('livestream-container').style.borderBottom = '2px solid transparent';
 		document.getElementById('livestream-container').style.borderTop = '2px solid transparent';
 		goActive();
 	}, 1000);
@@ -336,6 +341,7 @@ function playerOffline() {
 	document.exitFullscreen();
 	document.getElementById('stream-button-fullscreen-exit').style.display = 'none';
 	document.getElementById('stream-button-fullscreen-enter').style.display = 'inline-block';
+	document.getElementById('livestream-container').style.borderTop = '2px solid red';
 	document.getElementById('livestream-container').style.transition = 'height 1s';
 	document.getElementById('livestream-container').style.height = '0px';
 	document.getElementById('banner-offline-marker').style.opacity = '1';
@@ -347,6 +353,7 @@ function playerOffline() {
 	document.getElementById('livestream-container').style.pointerEvents = 'none';
 	setTimeout(function() {
 		document.getElementById('livestream-container').style.transition = '0s';
+		document.getElementById('livestream-container').style.borderTop = '2px solid transparent';
 	}, 1000);
 }
 
@@ -379,7 +386,7 @@ $.getJSON( "https://beatsturning.com/data/getevents.php", function(data){
 		var newNode = document.createTextNode(eventList[i]['link']);
 		newLink.appendChild(newNode);
 		newTextSpace.appendChild(newLink);
-		newLink.href = 'https://' + eventList[i]['link'];
+		newLink.onclick ="window.open('https://" + eventList[i]['link'] + "','_blank')";
 		i++;
 	}
 });
