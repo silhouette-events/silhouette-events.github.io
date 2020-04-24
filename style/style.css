@@ -298,7 +298,7 @@ body {
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
-	/*animation: rotate 30s linear infinite;*/
+	animation: rotate 30s linear infinite;
 }
 
 @keyframes rotate {

@@ -20,9 +20,7 @@ window.onload = function() {
 		document.body.style.height = 'auto';
 		if (onlineStatus == 0) {
 			document.getElementById('banner-offline-marker').style.opacity = '1';
-			if (document.getElementById('banner').clientWidth > 700) {
-				document.getElementById('banner').style.height = '50vh';
-			}
+			document.getElementById('banner').style.height = '50vh';
 		}
 	}, 500);
 }
@@ -46,7 +44,7 @@ if (volumeSlider.value > 50) {
 const options = {
 	width: '100%',
 	height: '100%',
-	channel: "monstercat",
+	channel: "beatsturningstaff",
 	autoplay: true,
 	controls: false,
 };
@@ -328,6 +326,9 @@ function playerOnline() {
 	document.getElementById('banner').style.height = '0px';
 	document.getElementById('livestream-container').style.borderTop = '2px solid red';
 	document.getElementById('banner-offline-marker').style.opacity = '0';
+	if (document.getElementById('livestream-container').clientWidth < 800) {
+		document.getElementById('livestream-container').style.minHeight = 'calc(56.25vw + 350px)';
+	}
 	goActive();
 	setTimeout(function() {
 		document.getElementById('livestream-container').style.pointerEvents = 'auto';
@@ -344,13 +345,10 @@ function playerOffline() {
 	document.getElementById('livestream-container').style.borderTop = '2px solid red';
 	document.getElementById('livestream-container').style.transition = 'height 1s';
 	document.getElementById('livestream-container').style.height = '0px';
+	document.getElementById('livestream-container').style.minHeight = '0px';
 	document.getElementById('banner-offline-marker').style.opacity = '1';
-	if (document.getElementById('banner').clientWidth > 700) {
-		document.getElementById('banner').style.height = '50vh';
-	} else {
-		document.getElementById('banner').style.height = '100vh';
-	}
 	document.getElementById('livestream-container').style.pointerEvents = 'none';
+	document.getElementById('banner').style.height = '50vh';
 	setTimeout(function() {
 		document.getElementById('livestream-container').style.transition = '0s';
 		document.getElementById('livestream-container').style.borderTop = '2px solid transparent';
@@ -397,6 +395,7 @@ setInterval(function() {
 		document.getElementById('livestream').style.height = window.innerHeight + 'px';
 		document.getElementById('livestream-chat-parent').style.height = null;
 		document.getElementById('stream-button-volume-container').style.display = null;
+		document.getElementById('livestream-container').style.minHeight = '0px';
 	} else {
 		document.getElementById('stream-button-volume-container').style.display = 'none';
 		player.setVolume(1);
@@ -406,14 +405,18 @@ setInterval(function() {
 		document.getElementById('stream-button-volume-full').style.display = 'inline-block';
 		document.getElementById('stream-button-volume-low').style.display = 'none';
 		document.getElementById('stream-button-volume-mute').style.display = 'none';
-		document.getElementById('livestream').style.height = null;
-		document.getElementById('livestream-chat-parent').style.height = 'calc(' + window.innerHeight + 'px - 56.25vw)';
-		if (fullscreenStatus == 1) {
-			document.getElementById('livestream-chat-parent').style.display = 'none';
-			document.getElementById('livestream').style.height = '100vh';
+		if (onlineStatus == 1) {
+			document.getElementById('livestream-chat-parent').style.height = 'calc(' + window.innerHeight + 'px - 56.25vw)';
+			if (fullscreenStatus == 1) {
+				document.getElementById('livestream-chat-parent').style.display = 'none';
+				document.getElementById('livestream').style.height = '100vh';
+			} else {
+				document.getElementById('livestream').style.height = null;
+				document.getElementById('livestream-chat-parent').style.display = 'block';
+			}
 		} else {
-			document.getElementById('livestream').style.height = null;
-			document.getElementById('livestream-chat-parent').style.display = 'block';
+			document.getElementById('livestream-container').style.height = '0px';
+			document.getElementById('livestream-container').style.minHeight = '0px';
 		}
 	}
 }, 0);
