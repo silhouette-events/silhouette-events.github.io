@@ -246,7 +246,9 @@ function goInactive() {
 	document.getElementById('stream-mouse-detector').style.cursor = 'none';
 	document.getElementById('stream-button-panel-container').style.pointerEvents = 'none';
 	document.getElementById('stream-button-panel-container').style.opacity = '0';
-	activeStatus = 0;
+	if (firstPlay == 1) {
+		activeStatus = 0;
+	}
 }
  
 function goActive() {
