@@ -13,7 +13,8 @@ var playStatus = 0;
 var onlineStatus = 0;
 var fullscreenStatus = 0;
 var resStatus;
-firstPlay = 0;
+var firstPlay = 0;
+var activeStatus = 1;
 
 if (document.getElementById('banner').clientWidth > 800) {
 	resStatus = 1;
@@ -245,14 +246,17 @@ function goInactive() {
 	document.getElementById('stream-mouse-detector').style.cursor = 'none';
 	document.getElementById('stream-button-panel-container').style.pointerEvents = 'none';
 	document.getElementById('stream-button-panel-container').style.opacity = '0';
+	activeStatus = 0;
 }
  
 function goActive() {
 	document.getElementById('stream-mouse-detector').style.cursor = 'auto';
 	document.getElementById('stream-button-panel-container').style.pointerEvents = 'auto';
 	document.getElementById('stream-button-panel-container').style.opacity = '1';
-         
     startTimer();
+	setTimeout(function() {
+		activeStatus = 1;
+	}, 400);
 }
 
 function streamToggle() {
@@ -285,7 +289,13 @@ jQuery.fn.single_double_click = function(single_click_callback, double_click_cal
 }
 
 $("#stream-mouse-detector").single_double_click(function() {
-	streamToggle();
+	if (screen.width <= 800) {
+		if (activeStatus == 1) {
+			streamToggle();
+		}
+	} else {
+		streamToggle();
+	}
 }, function() {
 	toggleFullscreen();
 });
