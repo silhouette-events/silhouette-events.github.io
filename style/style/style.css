@@ -350,6 +350,7 @@ body {
 	margin-top: 0px;
 	font-size: calc(0.2em + 1.1vw);
 	margin-bottom: 0px;
+	white-space: pre-line;
 }
 
 .event-text-container {
@@ -423,3 +424,8 @@ body {
 		width: calc(100% - 300px);
 	}
 }*/
+
+::selection {
+    background-color: rgb(255,0,0);
+    color: white;
+}
