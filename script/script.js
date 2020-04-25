@@ -401,7 +401,7 @@ $.getJSON( "https://beatsturning.com/data/getevents.php", function(data){
 		newTitle.appendChild(newNode);
 		newTextSpace.appendChild(newTitle);
 		var newPara = document.createElement('p');
-		var newNode = document.createTextNode(eventList[i]['description']);
+		var newNode = document.createTextNode(eventList[i]['description'].replace(/<br>/g, '\n'));
 		newPara.appendChild(newNode);
 		newTextSpace.appendChild(newPara);
 		var newLink = document.createElement('a');
