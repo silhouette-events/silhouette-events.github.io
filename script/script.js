@@ -470,6 +470,7 @@ setInterval(function() {
 			document.getElementById('livestream-chat-parent').style.display = 'block';
 		} else {
 			document.getElementById('livestream-chat-parent').style.display = 'none';
+			document.getElementById('livestream').style.height = window.innerHeight + 'px';
 		}
 	}
 	
