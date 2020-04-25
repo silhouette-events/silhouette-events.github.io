@@ -428,9 +428,7 @@ function toggleFullscreen() {
 		document.getElementById('stream-button-fullscreen-enter').style.display = 'none';
 		document.getElementById('stream-button-fullscreen-exit').style.display = 'inline-block';
 		fullscreenStatus = 1;
-		if (document.getElementById('banner').clientWidth <= 800) {
-			document.getElementById('livestream').style.height = '100vh';
-		}
+		document.getElementById('livestream').style.height = '100vh';
 	}
 }
 
